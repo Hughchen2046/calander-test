@@ -1,59 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>index</title>
-    <script type="module" crossorigin src="/calander-test/assets/main-gp4orpex.js"></script>
-    <link rel="stylesheet" crossorigin href="/calander-test/assets/main-OAV7ZXZl.css">
-  </head>
-  <body>
-    <h1 class="header">header</h1>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>日曆預約系統</title>
+  <script type="module" crossorigin src="/calander-test/assets/main-BAz03VCq.js"></script>
+  <link rel="stylesheet" crossorigin href="/calander-test/assets/main-D6NB6EXz.css">
+</head>
+
+<body>
+  <h1 class="header">header</h1>
 <a href="index.html">index</a>
 <a href="about.html">about</a>
-<a href="contact.html">contact</a>
-    <h1 class="index-title">我是首頁</h1>
+<a href="contact.html">contact</a>    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div class="card shadow">
+            <div class="card-body">
+              <!-- 日曆標題和導航 -->
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <button id="prevMonth" class="btn btn-outline-secondary">
+                  <i class="bi bi-chevron-left"></i>
+                </button>
+                <h4 id="currentMonth" class="mb-0"></h4>
+                <button id="nextMonth" class="btn btn-outline-secondary">
+                  <i class="bi bi-chevron-right"></i>
+                </button>
+              </div>
 
-    <div class="card" style="width: 18rem">
-      <img src="/calander-test/assets/dog-C9XCfHyE.jpg" class="card-img-top" alt="cat" />
-      <div class="card-body">
-        <h5 class="card-title">卡片元件</h5>
-        <p class="card-text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, odit, iusto odio assumenda alias id
-          nobis earum!
-        </p>
-      </div>
-    </div>
+              <!-- 星期標題 -->
+              <div class="row text-center mb-2">
+                <div class="col fw-bold text-muted">週日</div>
+                <div class="col fw-bold text-muted">週一</div>
+                <div class="col fw-bold text-muted">週二</div>
+                <div class="col fw-bold text-muted">週三</div>
+                <div class="col fw-bold text-muted">週四</div>
+                <div class="col fw-bold text-muted">週五</div>
+                <div class="col fw-bold text-muted">週六</div>
+              </div>
 
-    <!-- Modal 按鈕 -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      打開 modal
-    </button>
+              <!-- 日曆格子 -->
+              <div id="calendar-grid"></div>
 
-    <!-- Modal 元件 -->
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal 標題</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">內容</div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-            <button type="button" class="btn btn-primary">確定</button>
+              <!-- 時段選擇 -->
+              <div class="mt-4" id="timeSlotSection" style="display: none;">
+                <h5 class="mb-3">選擇時段</h5>
+                <div class="row text-center">
+                  <div class="col-4">
+                    <div class="time-slot-card" data-time="10:00">
+                      <div class="fw-bold">早上</div>
+                      <div class="time-display">10:00</div>
+                      <div class="availability">可預約</div>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="time-slot-card" data-time="14:00">
+                      <div class="fw-bold">下午</div>
+                      <div class="time-display">14:00</div>
+                      <div class="availability">可預約</div>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="time-slot-card" data-time="18:00">
+                      <div class="fw-bold">晚上</div>
+                      <div class="time-display">18:00</div>
+                      <div class="availability">可預約</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 預約按鈕 -->
+                <div class="text-center mt-4">
+                  <button id="bookingBtn" class="btn btn-warning btn-lg px-4" disabled>
+                    立即預約
+                  </button>
+                </div>
+              </div>
+
+              <!-- 管理面板 -->
+              <div class="mt-4">
+                <button class="btn btn-secondary btn-sm" data-bs-toggle="collapse" data-bs-target="#adminPanel">
+                  管理設定
+                </button>
+                <div class="collapse mt-3" id="adminPanel">
+                  <div class="card card-body bg-light">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label class="form-label">開放預訂天數</label>
+                        <input type="number" id="maxBookingDays" class="form-control" value="30" min="1" max="365">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">關閉日期</label>
+                        <input type="date" id="closedDate" class="form-control" placeholder="yyyy/mm/dd"
+                          value="yyyy/mm/dd">
+                        <button id="addClosedDate" class="btn btn-sm btn-outline-danger mt-2">新增關閉日期</button>
+                      </div>
+                    </div>
+                    <div class="mt-3">
+                      <label class="form-label">已關閉的日期</label>
+                      <div id="closedDatesList" class="d-flex flex-wrap gap-2"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
+
     <footer class="footer">footer</footer>
-  </body>
+</body>
+
 </html>
