@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>日曆預約系統</title>
-</head>
-
-<body>
-  <%- include('./layout/header'); -%>
-    <div class="container my-5">
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>日曆預約系統</title>
+  </head>
+  <body>
+    <div class="container mt-5">
       <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
           <div class="card shadow">
@@ -89,8 +86,7 @@
                       </div>
                       <div class="col-md-6">
                         <label class="form-label">關閉日期</label>
-                        <input type="date" id="closedDate" class="form-control" placeholder="yyyy/mm/dd"
-                          value="yyyy/mm/dd">
+                        <input type="date" id="closedDate" class="form-control" placeholder="yyyy/mm/dd" value="yyyy/mm/dd">
                         <button id="addClosedDate" class="btn btn-sm btn-outline-danger mt-2">新增關閉日期</button>
                       </div>
                     </div>
@@ -107,10 +103,7 @@
       </div>
     </div>
 
-
-    <%- include('./layout/footer'); -%>
-
-      <script type="module" src="../main.js"></script>
-</body>
-
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>
+

@@ -1,0 +1,208 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+
+:root {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* 日曆樣式 */
+.day-btn {
+  height: 45px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.day-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.day-btn:disabled {
+  opacity: 0.5;
+}
+
+/* 時段卡片樣式 */
+.time-slot-card {
+  background: #fff;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 20px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.time-slot-card:hover {
+  border-color: #007bff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,123,255,0.15);
+}
+
+.time-slot-card.selected {
+  border-color: #007bff;
+  background-color: #e7f3ff;
+  box-shadow: 0 4px 12px rgba(0,123,255,0.2);
+}
+
+.time-slot-card.booked {
+  background-color: #f8f9fa;
+  border-color: #dc3545;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.time-slot-card.booked:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.time-display {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 8px 0;
+}
+
+.availability {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* 月份導航按鈕 */
+#prevMonth, #nextMonth {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+/* 當前月份標題 */
+#currentMonth {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* 預約按鈕 */
+#bookingBtn {
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color: #000;
+  font-weight: 600;
+  border-radius: 25px;
+  padding: 12px 30px;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+#bookingBtn:hover:not(:disabled) {
+  background-color: #ffb300;
+  border-color: #ffb300;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255,193,7,0.3);
+}
+
+#bookingBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 卡片樣式 */
+.card {
+  border: none;
+  border-radius: 16px;
+}
+
+.card.shadow {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1) !important;
+}
+
+/* 管理面板樣式 */
+#adminPanel .card-body {
+  border-radius: 12px;
+}
+
+.badge {
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: 20px;
+}
+
+.badge .btn-close {
+  margin-left: 8px;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  .time-slot-card {
+    padding: 15px 8px;
+  }
+  
+  .time-display {
+    font-size: 20px;
+  }
+  
+  #currentMonth {
+    font-size: 20px;
+  }
+  
+  .day-btn {
+    height: 40px;
+    font-size: 14px;
+  }
+}
+
+/* 動畫效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#timeSlotSection {
+  animation: fadeIn 0.3s ease;
+}
+
+/* 星期標題樣式 */
+.row .col.fw-bold.text-muted {
+  font-size: 14px;
+  padding: 8px 0;
+}
+
+/* 選中日期的特殊樣式 */
+.btn-primary.day-btn {
+  background-color: #ff6b35;
+  border-color: #ff6b35;
+  color: white;
+  font-weight: 600;
+}
+
+.btn-primary.day-btn:hover {
+  background-color: #e55a2b;
+  border-color: #e55a2b;
+}
+

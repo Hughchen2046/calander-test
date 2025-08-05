@@ -1,6 +1,6 @@
-import './assets/scss/all.scss';
-import 'bootstrap/dist/js/bootstrap.min.js';
-
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+import './style.css'
 
 class CalendarBookingSystem {
   constructor() {
@@ -284,5 +284,3 @@ class CalendarBookingSystem {
 document.addEventListener("DOMContentLoaded", () => {
   window.calendarSystem = new CalendarBookingSystem()
 })
-
-console.log('Hello world');
